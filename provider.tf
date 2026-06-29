@@ -2,11 +2,19 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "6.52.0"
+      version = "~> 6.52"
     }
   }
+
+  required_version = ">= 1.5.0"
 }
 
 provider "aws" {
-  # Configuration options
+  alias  = "primary"
+  region = var.primary
+}
+
+provider "aws" {
+  alias  = "secondary"
+  region = var.secondary
 }
